@@ -1,5 +1,5 @@
 This project is testing out some different hueristic algorithms for
-the Travelling Salesman Problem or "Robot Tour Optimization," as it's called inSteven Skiena's Algorithm Design Manual. The problem is to find a tour around a set of points such that all points are visited, and the distance traveled is minimized.
+the Travelling Salesman Problem or "Robot Tour Optimization," as it's called in Steven Skiena's Algorithm Design Manual. The problem is to find a tour around a set of points such that all points are visited, and the distance traveled is minimized.
 
 The most basic algorithm uses the "Closest Neighbor" heuristic, which always picks the closest, non-visited point.
 
