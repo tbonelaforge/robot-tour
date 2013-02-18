@@ -1,0 +1,28 @@
+This project is testing out some different hueristic algorithms for
+the Travelling Salesman Problem or "Robot Tour Optimization," as it's called inSteven Skiena's Algorithm Design Manual. The problem is to find a tour around a set of points such that all points are visited, and the distance traveled is minimized.
+
+The most basic algorithm uses the "Closest Neighbor" heuristic, which always picks the closest, non-visited point.
+
+A much more complicated, but only slightly better performing algorithm uses the "Closest Pair" heuristic.  This consists of maintaining a list of partial tours, and progressively joining them together.  At each stage, two partial tours which have the closest pair of endpoints are joined together to form one longer tour.
+
+The third algorithm was just something I thought of and coded up for fun, but didn't perform very well at all.  I called it "Psuedo-Closest Neighbor." My ideacame from the fact that the closest neighbor heuristic would sometimes "make mistakes" by dogmatically picking the strictly closest non-visited point. I tried introducing some randomness to the algorithm so that at each stage, it would "most likely" pick the closest point, but not always.  For each unvisited point in the set, a probability distribution is created for all the other points, such that the closest points had higher probabilities.  Then that distribution was used with a random value to pick the next point in the tour.  This algorithm was also complicated, because I used binary trees to implement the probability distributions for each point in the set.
+
+The main program is called "poinsettestertest.java" and can be compiled like so:
+
+cd point
+javac poinsettestertest.java
+
+Then, executing with 
+
+java pointsettestertest
+
+produces output like the following.
+
+The accumulated statistics are:
+closestNeighbor, 0.881625
+closestPair, 0.917717
+psuedoClosestNeighbor, 0.830979
+
+These are the results of creating 500 random point sets, each having 5 points in [1,9] x [1,9], and running each of the three tour-finding algorithms on each point set.  Also, for each point set, the absolute minimum tour distance is calculated by brute force.  The resulting statistics represent how well the algorithms achieved the actual minimum tour, on average.  For example, the closest neighbor heuristic produces tours that are, on average, 88.1625% optimal.
+
+The big lesson learned from this project was that the extra complication and time it takes to compute the closestPair tours was not really worth it. That algorithm produced slightly more optimal solutions, but the simple closestNeighbor heuristic did almost as well, with a lot less effort!

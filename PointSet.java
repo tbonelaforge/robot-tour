@@ -67,7 +67,6 @@ public class PointSet {
         for ( int d = 1; d < _points.length; d++ ) {
             int otherIndex = ( i + d ) % _points.length;
             double distance = distanceBetweenPoints( i, otherIndex );
-            //            total += 1.0 / Math.pow( distance/50.0 + 1.0, 6 ) + 1.0;
             total += Math.pow( 3.0, -distance );
             newBinaryTree.insert( total, otherIndex );
 
@@ -232,7 +231,6 @@ public class PointSet {
         optimality = getOptimality( tour );
         statistic = new Statistic( "closestPair", optimality );
         statistics[1] = statistic;
-        //        return statistics;
 
         tour = getPsuedoClosestNeighborTour();
         optimality = getOptimality( tour );
@@ -268,11 +266,9 @@ public class PointSet {
         int result = -1;
         BinaryNode distanceDistribution = getDistanceDistributions()[i];
         do {
-            //System.out.println("Inside getPsuedoClosestNonVisited do loop.");
             double r = Math.random() * distanceDistribution.maxValue;
             BinaryNode rNode = distanceDistribution.locateSuccessor( r );
             result = rNode.data;
-            //System.out.println("considering result: " + result);
         } while ( _visited[result] );
         return result;
     }
